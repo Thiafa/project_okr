@@ -29,7 +29,6 @@ class AuthController extends Controller
 
     public function register(Request $request){
         try {
-            //code...
             $request->validate([
                 'name' => 'required|string',
                 'email' => 'required|email|unique:users,email',
@@ -47,6 +46,15 @@ class AuthController extends Controller
             throw $th;
             return response()->json(['message' => 'ERROR!'], 401);
         }
+    }
 
+    public function logout(){
+        try {
+            Auth::logout();
+            return response()->json(['message' => 'User logout successfully'], 201);
+        } catch (\Throwable $th) {
+            throw $th;
+            return response()->json(['message' => 'ERROR!'], 401);
+        }
     }
 }
