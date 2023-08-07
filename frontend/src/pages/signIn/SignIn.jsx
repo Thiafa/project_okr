@@ -1,15 +1,19 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import api from '../../services/api';
 import { useNavigate } from 'react-router-dom';
+
+import UserContext from '../../context/UserContext';
 
 const Sign = () => {
   const [email, setEmail] = React.useState();
   const [password, setPassword] = React.useState();
+  const { setUser } = useContext(UserContext);
 
   const navigate = useNavigate();
 
   const handleLogin = async (e) => {
     e.preventDefault();
+
     try {
       const obj = {
         email,
@@ -18,6 +22,9 @@ const Sign = () => {
 
       const { data } = await api.post('/login', obj);
       localStorage.setItem('x-auth-token', data.token);
+
+      setUser(data.name);
+
       navigate('/home');
     } catch (error) {
       console.error('Erro', error);
