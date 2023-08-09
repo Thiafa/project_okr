@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import api from '../../services/api';
 import { useNavigate } from 'react-router-dom';
-
+import imagem from '../../assets/logo_okr.svg';
 import UserContext from '../../context/UserContext';
 
 const Sign = () => {
@@ -27,34 +27,43 @@ const Sign = () => {
 
       navigate('/home');
     } catch (error) {
+      alert('Credenciais Incorretas!');
       console.error('Erro', error);
     }
   };
 
   return (
-    <form method="post">
-      <label htmlFor="email">
-        Email
+    <div className="bg-[#086893] w-full h-[100vh] flex justify-around items-center">
+      <img src={imagem} className="w-1/3" alt="" />
+      <form method="post" className="flex flex-col w-1/3">
+        <h2 className="text-3xl font-bold text-okr-gray text-center">Login</h2>
+        <label htmlFor="email" className="text-okr-gray label ">
+          Email
+        </label>
         <input
           type="email"
           name="email"
           id="email"
           onChange={({ target }) => setEmail(target.value)}
+          className="input focus:outline-none focus:border-sky-500"
         />
-      </label>
-      <label htmlFor="password">
-        Password
+
+        <label htmlFor="password" className="text-okr-gray label ">
+          Password
+        </label>
         <input
           type="password"
           name="password"
           id="password"
           onChange={({ target }) => setPassword(target.value)}
+          className="input focus:outline-none focus:border-red-500"
         />
-      </label>
-      <button onClick={handleLogin} type="submit">
-        Enter
-      </button>
-    </form>
+
+        <button onClick={handleLogin} type="submit" className="button ">
+          Enter
+        </button>
+      </form>
+    </div>
   );
 };
 
