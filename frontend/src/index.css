@@ -2,15 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
+.form {
+  @apply bg-[#086893] w-full h-[100vh] flex justify-around items-center
+}
 
-.label{
-  @apply text-xl font-medium text-okr-gray mb-2 
+.label {
+  @apply text-xl font-medium text-okr-gray mb-2
 }
 
 .input {
-  @apply px-4 py-3 rounded-sm bg-transparent border-2 border-okr-gray shadow-xl mb-8 text-okr-gray 
+  @apply px-4 py-3 rounded-sm bg-transparent border-2 border-okr-gray shadow-xl mb-8 text-okr-gray
 }
 
-.button{
-  @apply px-4 py-3 w-52 rounded-xl m-auto text-okr-blue bg-okr-gray  
+.button {
+  @apply px-4 py-3 w-52 rounded-xl m-auto text-okr-blue bg-okr-gray
 }

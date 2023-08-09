@@ -33,7 +33,7 @@ const Sign = () => {
   };
 
   return (
-    <div className="bg-[#086893] w-full h-[100vh] flex justify-around items-center">
+    <div className="form">
       <img src={imagem} className="w-1/3" alt="" />
       <form method="post" className="flex flex-col w-1/3">
         <h2 className="text-3xl font-bold text-okr-gray text-center">Login</h2>
@@ -56,12 +56,13 @@ const Sign = () => {
           name="password"
           id="password"
           onChange={({ target }) => setPassword(target.value)}
-          className="input focus:outline-none focus:border-red-500"
+          className="input focus:outline-none focus:bg-red-500 " 
         />
 
         <button onClick={handleLogin} type="submit" className="button ">
           Enter
         </button>
+        <a href="/register">Register</a>
       </form>
     </div>
   );
