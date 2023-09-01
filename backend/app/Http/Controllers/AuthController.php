@@ -11,23 +11,31 @@ use App\Models\User;
 
 class AuthController extends Controller
 {
-    public function login(Request $request){
+    public function login(Request $request)
+    {
         $credentials = $request->only('email', 'password');
         try {
             if (Auth::attempt($credentials)) {
                 $user = Auth::user();
                 $token = JWTAuth::fromUser($user);
-                return response()->json(['token' => $token,'name'=>$user->name], 200);
+                return response()->json(
+                    [
+                        "msg" => "User created with success!",
+                        "data" => ['name' => $user->name, 'token' => $token],
+                        'status' => true,
+                    ],
+                    200
+                );
             }
             return response()->json(['message' => 'Unauthorized'], 401);
         } catch (\Throwable $th) {
             throw $th;
             return response()->json(['message' => 'ERROR!'], 401);
         }
-
     }
 
-    public function register(Request $request){
+    public function register(Request $request)
+    {
         try {
             $request->validate([
                 'name' => 'required|string',
@@ -48,7 +56,8 @@ class AuthController extends Controller
         }
     }
 
-    public function logout(){
+    public function logout()
+    {
         try {
             Auth::logout();
             return response()->json(['message' => 'User logout successfully'], 201);

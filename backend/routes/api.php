@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,13 +18,13 @@ use App\Http\Controllers\AuthController;
 */
 
 
-Route::post('login',[AuthController::class, 'login']);
-Route::post('register',[AuthController::class, 'register']);
-Route::post('logout',[AuthController::class, 'logout']);
+Route::post('login', [AuthController::class, 'login']);
+Route::post('register', [AuthController::class, 'register']);
+Route::post('logout', [AuthController::class, 'logout']);
 
 Route::middleware('jwt.auth')->group(function () {
-    Route::get('/teste', function(){
+    Route::get('/teste', function () {
         return "Olá mundo";
     });
+    Route::resource('user', UserController::class)->except('edit', 'edit');
 });
-
