@@ -25,7 +25,6 @@ class UserStoreRequest extends FormRequest
             'name' => 'required|string|max:255',
             'email' => 'required|email|max:255|unique:users',
             'last_name' => 'required|string|max:255',
-            'link_profile' => 'url|max:255',
         ];
     }
 
@@ -35,7 +34,7 @@ class UserStoreRequest extends FormRequest
             'required' => 'The :attribute field is required.',
             'unique' => ':attribute already exists.',
             'email' => 'Invalid email format.',
-            'link_profile.url' => 'Invalid URL format for link profile.',
+            'avatar.url' => 'Invalid URL format for link profile.',
         ];
     }
 }

@@ -27,9 +27,9 @@ class ResponseServiceProvider extends ServiceProvider
                 'data' => $data,
             ]);
         });
-        Response::macro('fail', function ($message, $data = null) {
+        Response::macro('fail', function ($message) {
             return response()->json([
-                'status' => true,
+                'status' => false,
                 'message' => $message,
             ]);
         });

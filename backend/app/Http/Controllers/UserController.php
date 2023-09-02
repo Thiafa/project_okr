@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Requests\UserStoreRequest;
 use App\Http\Requests\UserUpdateRequest;
+use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
@@ -35,7 +36,6 @@ class UserController extends Controller
     }
     public function update(UserUpdateRequest $request, User $user)
     {
-
         $user->update($request->all());
         return response()->json(
             [
@@ -54,5 +54,28 @@ class UserController extends Controller
                 'status' => true,
             ]
         );
+    }
+    public function uploadAvatar(Request $request, User $user)
+    {
+        if (auth()->user()->id == $user->id) {
+            $path = $request->file('avatar')->store('avatars/' . $user->id);
+            if (isset($user->avatar)) {
+                $url = $user->avatar;
+                Storage::delete($url);
+                $user->avatar = $path;
+                $user->save();
+            }
+            return response()->success('Avatar photo has been uploaded!', $user);
+        }
+        return response()->fail('Does not have access!');
+    }
+    public function deleteAvatar(User $user)
+    {
+        if (auth()->user()->id == $user->id) {
+            if (isset($user->avatar)) {
+                Storage::delete($user->avatar);
+            }
+        }
+        return response()->success('Avatar photo has been removed!', $user);
     }
 }

@@ -27,4 +27,6 @@ Route::middleware('jwt.auth')->group(function () {
         return "Olá mundo";
     });
     Route::resource('user', UserController::class)->except('edit', 'create');
+    Route::patch('user/avatar/{user}', [UserController::class, 'uploadAvatar']);
+    Route::delete('user/avatar/{user}', [UserController::class, 'deleteAvatar']);
 });
