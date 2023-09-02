@@ -26,5 +26,5 @@ Route::middleware('jwt.auth')->group(function () {
     Route::get('/teste', function () {
         return "Olá mundo";
     });
-    Route::resource('user', UserController::class)->except('edit', 'edit');
+    Route::resource('user', UserController::class)->except('edit', 'create');
 });

@@ -3,6 +3,8 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -47,6 +49,19 @@ class User extends Authenticatable implements JWTSubject
         'created_at' => 'datetime:Y-m-d H:i:s',
         'updated_at' => 'datetime:Y-m-d H:i:s',
     ];
+
+    public function scopeSearch(Builder $query, $request)
+    {
+        return $query->when($request->email, function (Builder $query, string $email) {
+            return $query->where('email', 'like', '%' . $email . '%');
+        })
+            ->when($request->name, function (Builder $query, $name) {
+                return $query->where('name', 'like', '%' . $name . '%');
+            })
+            ->when($request->last_name, function (Builder $query, $last_name) {
+                return $query->where('last_name', 'like', '%' . $last_name . '%');
+            });
+    }
 
     public function getJWTIdentifier()
     {
