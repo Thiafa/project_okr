@@ -59,8 +59,9 @@ class UserController extends Controller
     {
         if (auth()->user()->id == $user->id) {
             $path = $request->file('avatar')->store('avatars/' . $user->id);
-            if (isset($user->avatar)) {
-                $url = $user->avatar;
+            $url = strval($user->avatar);
+
+            if (Storage::exists($url)) {
                 Storage::delete($url);
                 $user->avatar = $path;
                 $user->save();
@@ -72,8 +73,10 @@ class UserController extends Controller
     public function deleteAvatar(User $user)
     {
         if (auth()->user()->id == $user->id) {
-            if (isset($user->avatar)) {
+            if (isset($user->avatar) && Storage::exists(strval($user->avatar))) {
                 Storage::delete($user->avatar);
+                $user->avatar = null;
+                $user->save();
             }
         }
         return response()->success('Avatar photo has been removed!', $user);
