@@ -40,16 +40,20 @@ class AuthController extends Controller
         try {
             $request->validate([
                 'name' => 'required|string',
+                'lastname' => 'required|string',
                 'email' => 'required|email|unique:users,email',
                 'password' => 'required|string|min:6',
             ]);
             $user = new User([
                 'name' => $request->name,
+                'last_name' => $request->lastname,
                 'email' => $request->email,
                 'password' => bcrypt($request->password),
             ]);
-            Mail::to($user->email)->send(new WelcomeEmail($user->name));
             $user->save();
+            if (isset($user)) {
+                Mail::to($user->email)->send(new WelcomeEmail($user->name));
+            }
             return response()->json(['message' => 'User registered successfully'], 201);
         } catch (\Throwable $th) {
             throw $th;

@@ -77,8 +77,8 @@ class User extends Authenticatable implements JWTSubject, CanResetPassword
 
     public function sendPasswordResetNotification($token)
     {
-        $client_url = 'http://localhost:5173/';
-        $url =  $client_url . '?' . $token;
+        $client_url = 'http://localhost:5173/reset-password/';
+        $url =  $client_url . $token;
         $this->notify(new ResetPasswordNotification($url));
     }
 }
