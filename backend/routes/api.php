@@ -3,7 +3,9 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-use App\Http\Controllers\AuthController;
+use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\Auth\ForgotPasswordController;
+use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\UserController;
 
 /*
@@ -21,6 +23,10 @@ use App\Http\Controllers\UserController;
 Route::post('login', [AuthController::class, 'login']);
 Route::post('register', [AuthController::class, 'register']);
 Route::post('logout', [AuthController::class, 'logout']);
+// ? Route to received and confirm to email and send a link to email (post)
+Route::post('/forgot-password', [ForgotPasswordController::class, 'forgotPassword']);
+// ? Route to reset password (post)
+Route::post('/reset-password/{token}', [ResetPasswordController::class, 'reset']);
 
 Route::middleware('jwt.auth')->group(function () {
     Route::get('/teste', function () {
