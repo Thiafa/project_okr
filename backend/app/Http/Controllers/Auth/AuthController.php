@@ -19,14 +19,7 @@ class AuthController extends Controller
             if (Auth::attempt($credentials)) {
                 $user = Auth::user();
                 $token = JWTAuth::fromUser($user);
-                return response()->json(
-                    [
-                        "msg" => "User created with success!",
-                        "data" => ['name' => $user->name, 'token' => $token],
-                        'status' => true,
-                    ],
-                    200
-                );
+                return response()->success('User created with success!', $token);
             }
             return response()->json(['message' => 'Unauthorized'], 401);
         } catch (\Throwable $th) {
@@ -40,13 +33,11 @@ class AuthController extends Controller
         try {
             $request->validate([
                 'name' => 'required|string',
-                'lastname' => 'required|string',
                 'email' => 'required|email|unique:users,email',
                 'password' => 'required|string|min:6',
             ]);
             $user = new User([
                 'name' => $request->name,
-                'last_name' => $request->lastname,
                 'email' => $request->email,
                 'password' => bcrypt($request->password),
             ]);
@@ -54,10 +45,10 @@ class AuthController extends Controller
             if (isset($user)) {
                 Mail::to($user->email)->send(new WelcomeEmail($user->name));
             }
-            return response()->json(['message' => 'User registered successfully'], 201);
+            return response()->success('User registered successfully', $user);
         } catch (\Throwable $th) {
             throw $th;
-            return response()->json(['message' => 'ERROR!'], 401);
+            return response()->fail('ERROR!', $th);
         }
     }
 
@@ -65,10 +56,10 @@ class AuthController extends Controller
     {
         try {
             Auth::logout();
-            return response()->json(['message' => 'User logout successfully'], 201);
+            return response()->success('User logout successfully');
         } catch (\Throwable $th) {
             throw $th;
-            return response()->json(['message' => 'ERROR!'], 401);
+            return response()->fail('ERROR!');
         }
     }
 }

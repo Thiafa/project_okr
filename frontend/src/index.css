@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 .form {
-  @apply bg-[#086893] w-full h-[100vh] flex justify-around items-center
+  @apply bg-[#086893] w-full h-[100vh] flex justify-around items-center 
 }
 
 .label {
@@ -11,9 +11,15 @@
 }
 
 .input {
-  @apply px-4 py-3 rounded-sm bg-transparent border-2 border-okr-gray shadow-xl mb-8 text-okr-gray
+  @apply px-4 py-4 rounded-md bg-transparent border border-okr-gray shadow-xl mt-2 mb-8 text-okr-gray 
+}
+
+.nav-button{
+  @apply px-4 py-4 pt-3 pb-3 rounded-md  
 }
 
 .button {
-  @apply px-4 py-3 w-52 rounded-xl m-auto text-okr-blue bg-okr-gray
+  @apply px-4 py-4 w-52 rounded-xl m-auto text-okr-blue bg-okr-gray uppercase font-bold
 }
+
+
