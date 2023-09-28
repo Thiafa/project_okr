@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import api from '../../services/api';
 import { useNavigate } from 'react-router-dom';
-import imagem from '../../assets/logo_okr.svg';
+import imgHome from '../../assets/consulting.png';
 import UserContext from '../../context/UserContext';
 
 const Sign = () => {
@@ -33,37 +33,25 @@ const Sign = () => {
   };
 
   return (
-    <div className="form">
-      <img src={imagem} className="w-1/3" alt="" />
-      <form method="post" className="flex flex-col w-1/3">
-        <h2 className="text-3xl font-bold text-okr-gray text-center">Login</h2>
-        <label htmlFor="email" className="text-okr-gray label ">
-          Email
-        </label>
-        <input
-          type="email"
-          name="email"
-          id="email"
-          onChange={({ target }) => setEmail(target.value)}
-          className="input focus:outline-none focus:border-sky-500"
-        />
-
-        <label htmlFor="password" className="text-okr-gray label ">
-          Password
-        </label>
-        <input
-          type="password"
-          name="password"
-          id="password"
-          onChange={({ target }) => setPassword(target.value)}
-          className="input focus:outline-none focus:bg-red-500 " 
-        />
-
-        <button onClick={handleLogin} type="submit" className="button ">
-          Enter
-        </button>
-        <a href="/register">Register</a>
-      </form>
+    <div className="flex justify-around h-screen">
+      <a href="">OKR System</a>
+      <div className="w-1/2 d-flex justify-center">
+        <img src={imgHome} alt="" />
+      </div>
+      <div className="w-1/2 bg-okr-blue flex flex-col justify-center text-center">
+        <p>SigIn</p>
+        <form action="" className="flex flex-col">
+          <label>
+            Email
+            <input type="text" />
+          </label>
+          <label>
+            Password
+            <input type="text" />
+          </label>
+          <button className="">Enter</button>
+        </form>
+      </div>
     </div>
   );
 };

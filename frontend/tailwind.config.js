@@ -6,7 +6,7 @@ export default {
       colors: {
         transparent: 'transparent',
         'okr-gray': '#D9D9D9',
-        'okr-blue': '#086893',
+        'okr-blue': '#3DCAFF',
       },
     },
   },
