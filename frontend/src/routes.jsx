@@ -1,8 +1,8 @@
 import React from 'react';
 import { BrowserRouter, Link, Route, Routes, Navigate } from 'react-router-dom';
 import SignIn from './pages/signIn/SignIn';
-import SignUp from './pages/signUp/SignUp';
-import Register from './pages/register/Register';
+import SignOut from './pages/signOut/SignOut';
+import SignUp from './pages/SignUp/SignUp';
 import Home from './pages/home/Home';
 import ForgotPassword from './pages/forgotPassword/ForgotPassword';
 import ResetPassword from './pages/resetPassword/ResetPassword';
@@ -22,14 +22,14 @@ const Rotas = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<SignIn />} />
-        <Route path="/register" element={<Register />} />
+        <Route path="/register" element={<SignUp />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/reset-password/:token" element={<ResetPassword />} />
         <Route
           path="/logout"
           element={
             <ProtectedRoutes>
-              <SignUp />
+              <SignOut />
             </ProtectedRoutes>
           }
         />
