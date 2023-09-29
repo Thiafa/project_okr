@@ -7,8 +7,9 @@ export default {
         transparent: 'transparent',
         'okr-gray': '#D9D9D9',
         'okr-blue': '#3DCAFF',
+        'okr-blue-dark': '#086893',
       },
     },
   },
-  plugins: [],
+  plugins: [require('@tailwindcss/forms')],
 };

@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import api from '../../services/api';
 import { useNavigate } from 'react-router-dom';
-import UserContext from '../../context/UserContext';
+import UserContext from '../../context/User/UserContext';
 
 const SignUp = () => {
   const navigate = useNavigate();

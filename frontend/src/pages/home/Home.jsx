@@ -1,8 +1,8 @@
 import React, { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import imgHome from '../../assets/checklist.png';
-import UserContext from '../../context/UserContext';
-import Nav from '../../components/Nav';
+import UserContext from '../../context/User/UserContext';
+import Nav from '../../components/NavBar/Nav';
 
 const Home = () => {
   // const data = useContext(UserContext);

@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import api from '../../services/api';
 import { useNavigate, useParams } from 'react-router-dom';
 import imagem from '../../assets/logo_okr.svg';
-import UserContext from '../../context/UserContext';
+import UserContext from '../../context/User/UserContext';
 
 const ForgotPassword = () => {
   const [email, setEmail] = React.useState();

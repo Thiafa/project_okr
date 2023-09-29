@@ -19,7 +19,20 @@
 }
 
 .button {
-  @apply px-4 py-4 w-52 rounded-xl m-auto text-okr-blue bg-okr-gray uppercase font-bold
+  @apply mt-8 px-4 py-4 pt-3 pb-3 rounded-md w-28 m-auto bg-okr-blue-dark text-white font-bold hover:bg-[#4B7F97]
 }
 
+.title{
+  @apply text-[54px] text-white font-bold text-center
+}
 
+.t-label{
+  @apply text-base text-white font-bold
+}
+.t-input{
+  @apply form-input rounded-md border-none p-3
+}
+
+.divider{
+  @apply  border-b w-full h-1 bg-white
+}
