@@ -1,70 +1,80 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import api from '../../services/api';
 import { useNavigate } from 'react-router-dom';
-import imagem from '../../assets/logo_okr.svg';
+import imgHome from '../../assets/consulting.png';
+import UserContext from '../../context/User/UserContext';
+import { Success, Error } from '../../components/Alert/Alert';
 
 const SignUp = () => {
-  const [username, setUsername] = React.useState();
+  const [name, setName] = React.useState();
   const [email, setEmail] = React.useState();
   const [password, setPassword] = React.useState();
 
-  const navigate = useNavigate();
-
-  const handlesignup = async (e) => {
+  const handleRegister = async (e) => {
     e.preventDefault();
+    try {
+      const obj = {
+        name,
+        email,
+        password,
+      };
 
-    const obj = {
-      name: username,
-      email,
-      password,
-    };
+      const { data } = await api.post('/register', obj);
+      localStorage.setItem('x-auth-token', data.token);
 
-    console.log(obj);
-
-    const data = await api.post('/register', obj);
-
-    if (data.status == 201) return navigate('/login');
+      setUser(data.name);
+      Success('Teste');
+      navigate('/home');
+    } catch (error) {
+      Error('Credenciais Incorretas!');
+      console.error('Erro', error);
+    }
   };
-
   return (
-    <div className="form">
-      <form method="post" className="flex flex-col w-1/3">
-        <label htmlFor="username" className="text-okr-gray label ">
-          Username
-        </label>
-        <input
-          type="text"
-          name="name"
-          id="name"
-          onChange={({ target }) => setUsername(target.value)}
-          className="input focus:outline-none focus:border-sky-500"
-        />
-        <label htmlFor="email" className="text-okr-gray label ">
-          Email
-        </label>
-        <input
-          type="email"
-          name="email"
-          id="email"
-          onChange={({ target }) => setEmail(target.value)}
-          className="input focus:outline-none focus:border-sky-500"
-        />
-        <label htmlFor="password" className="text-okr-gray label ">
-          Password
-        </label>
-        <input
-          type="password"
-          name="password"
-          id="password"
-          onChange={({ target }) => setPassword(target.value)}
-          className="input focus:outline-none focus:border-sky-500"
-        />
-        <button onClick={handlesignup} type="submit" className="button ">
-          Enter
-        </button>
-        <a href="/login">Login</a>
-      </form>
-      <img src={imagem} className="w-1/3" alt="" />
+    <div className="flex justify-around h-screen">
+      <div className="w-1/2 bg-okr-blue flex flex-col justify-center text-center">
+        <form action="" className="flex flex-col text-left w-1/2 m-auto">
+          <p className="title">SigUp</p>
+          <label className="mt-8 mb-3 t-label">Name</label>
+          <input
+            type="text"
+            className="t-input"
+            onChange={({ target }) => setName(target.value)}
+          />
+          <label className="mt-8 mb-3 t-label">Email</label>
+          <input
+            type="email"
+            className="t-input"
+            onChange={({ target }) => setEmail(target.value)}
+          />
+          <label className="mt-8 mb-3 t-label">Password</label>
+          <input
+            type="password"
+            className="t-input"
+            onChange={({ target }) => setPassword(target.value)}
+          />
+          <button className="mt-8 button" onClick={handleRegister}>
+            Enter
+          </button>
+          <div className="flex items-center justify-between w-full my-14">
+            <div className="divider"></div>{' '}
+            <div className="mx-10 font-bold text-white">OR</div>
+            <div className="divider"></div>{' '}
+          </div>
+          <a
+            href="login"
+            className="text-md text-center font-medium pt-2 text-white hover:text-okr-blue-dark"
+          >
+            SignIn
+          </a>
+        </form>
+      </div>
+      <div className="w-1/2 h-screen flex flex-col justify-center ">
+        <a href="" className="w-44 p-6">
+          OKR System
+        </a>
+        <img src={imgHome} alt="" className="m-auto " />
+      </div>
     </div>
   );
 };
