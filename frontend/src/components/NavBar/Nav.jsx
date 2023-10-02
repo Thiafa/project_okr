@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 
 const Nav = () => {
   return (
-    <div className="flex justify-between mx-60 my-10">
+    <div className="flex justify-between w-screen  px-24 my-10">
       <div>
         <a className="text-xl font-medium">OKR System</a>
       </div>

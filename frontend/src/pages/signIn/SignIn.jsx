@@ -21,10 +21,10 @@ const Sign = () => {
       };
 
       const { data } = await api.post('/login', obj);
-      localStorage.setItem('x-auth-token', data.token);
+      localStorage.setItem('x-auth-token', data.data.token);
 
-      setUser(data.name);
-      Success('Teste');
+      setUser(data.data);
+      Success(`Welcome ${data.data.name}`);
       navigate('/home');
     } catch (error) {
       Error('Credenciais Incorretas!');

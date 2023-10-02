@@ -19,7 +19,8 @@ class AuthController extends Controller
             if (Auth::attempt($credentials)) {
                 $user = Auth::user();
                 $token = JWTAuth::fromUser($user);
-                return response()->success('User created with success!', $token);
+                $user['token'] = $token;
+                return response()->success('User created with success!', $user);
             }
             return response()->json(['message' => 'Unauthorized'], 401);
         } catch (\Throwable $th) {
@@ -30,26 +31,25 @@ class AuthController extends Controller
 
     public function register(Request $request)
     {
+
+        $request->validate([
+            'name' => 'required|string',
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|string|min:6',
+        ]);
+        $user = new User([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => bcrypt($request->password),
+        ]);
+        $user->save();
         try {
-            $request->validate([
-                'name' => 'required|string',
-                'email' => 'required|email|unique:users,email',
-                'password' => 'required|string|min:6',
-            ]);
-            $user = new User([
-                'name' => $request->name,
-                'email' => $request->email,
-                'password' => bcrypt($request->password),
-            ]);
-            $user->save();
             if (isset($user)) {
                 Mail::to($user->email)->send(new WelcomeEmail($user->name));
             }
-            return response()->success('User registered successfully', $user);
         } catch (\Throwable $th) {
-            throw $th;
-            return response()->fail('ERROR!', $th);
         }
+        return response()->success('User registered successfully', $user);
     }
 
     public function logout()

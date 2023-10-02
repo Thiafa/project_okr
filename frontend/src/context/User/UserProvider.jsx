@@ -11,7 +11,7 @@ const UserProvider = ({ children }) => {
   }, [user]);
 
   const login = () => {
-    localStorage.setItem('user', user);
+    // localStorage.setItem('user', user);
   };
 
   const logout = () => {

@@ -23,11 +23,27 @@
 }
 
 .title{
-  @apply text-[54px] text-white font-bold text-center
+  @apply text-white font-bold text-center  
+  /* md */
+  md:text-[10px]
+
+  /* lg */
+  lg:text-[48px]
+
+  /* xxl */
+  xl:text-[54px]
 }
 
 .t-label{
-  @apply text-base text-white font-bold
+  @apply text-base text-white font-bold   mb-3 
+  /* md */
+  md:mt-2
+
+  /* lg */
+  lg:mt-6
+
+  /* xl */
+  xl:mt-6
 }
 .t-input{
   @apply form-input rounded-md border-none p-3
@@ -35,4 +51,8 @@
 
 .divider{
   @apply  border-b w-full h-1 bg-white
+
 }
+
+
+/* Medium */
