@@ -27,8 +27,9 @@ const Sign = () => {
       Success(`Welcome ${data.data.name}`);
       navigate('/home');
     } catch (error) {
-      Error('Credenciais Incorretas!');
-      console.error('Erro', error);
+      if (error.response) {
+        Error(error.response.data.message);
+      }
     }
   };
 

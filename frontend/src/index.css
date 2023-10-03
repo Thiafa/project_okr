@@ -3,26 +3,26 @@
 @tailwind utilities;
 
 .form {
-  @apply bg-[#086893] w-full h-[100vh] flex justify-around items-center 
+  @apply bg-[#086893] w-full h-[100vh] flex justify-around items-center;
 }
 
 .label {
-  @apply text-xl font-medium text-okr-gray mb-2
+  @apply text-xl font-medium text-okr-gray mb-2;
 }
 
 .input {
-  @apply px-4 py-4 rounded-md bg-transparent border border-okr-gray shadow-xl mt-2 mb-8 text-okr-gray 
+  @apply px-4 py-4 rounded-md bg-transparent border border-okr-gray shadow-xl mt-2 mb-8 text-okr-gray;
 }
 
-.nav-button{
-  @apply px-4 py-4 pt-3 pb-3 rounded-md  
+.nav-button {
+  @apply px-4 py-4 pt-3 pb-3 rounded-md;
 }
 
 .button {
-  @apply mt-8 px-4 py-4 pt-3 pb-3 rounded-md w-28 m-auto bg-okr-blue-dark text-white font-bold hover:bg-[#4B7F97]
+  @apply mt-8 px-4 py-4 pt-3 pb-3 rounded-md w-28 m-auto bg-okr-blue-dark text-white font-bold hover:bg-[#4B7F97];
 }
 
-.title{
+.title {
   @apply text-white font-bold text-center  
   /* md */
   md:text-[10px]
@@ -31,10 +31,10 @@
   lg:text-[48px]
 
   /* xxl */
-  xl:text-[54px]
+  xl:text-[54px];
 }
 
-.t-label{
+.t-label {
   @apply text-base text-white font-bold   mb-3 
   /* md */
   md:mt-2
@@ -43,16 +43,14 @@
   lg:mt-6
 
   /* xl */
-  xl:mt-6
+  xl:mt-6;
 }
-.t-input{
-  @apply form-input rounded-md border-none p-3
-}
-
-.divider{
-  @apply  border-b w-full h-1 bg-white
-
+.t-input {
+  @apply form-input rounded-md border-none p-3;
 }
 
+.divider {
+  @apply border-b w-full h-1 bg-white;
+}
 
 /* Medium */

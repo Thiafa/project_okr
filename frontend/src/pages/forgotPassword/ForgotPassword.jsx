@@ -18,11 +18,11 @@ const ForgotPassword = () => {
       };
       const response = await api.post('/forgot-password', obj);
       console.log(response);
-      Success(`Welcome ${response}`);
-      // navigate('/login');
+      Success(`${response.data.message}`);
     } catch (error) {
-      Error('Credenciais Incorretas!');
-      console.error('Erro', error);
+      if (error.response) {
+        Error(error.response.data.message);
+      }
     }
   };
   return (
