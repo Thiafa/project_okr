@@ -20,15 +20,19 @@ const Sign = () => {
         password,
       };
 
-      const { data } = await api.post('/login', obj);
-      localStorage.setItem('x-auth-token', data.data.token);
+      const response = await api.post('/login', obj);
 
-      setUser(data.data);
-      Success(`Welcome ${data.data.name}`);
+      localStorage.setItem('x-auth-token', response.data.data.token);
+      localStorage.setItem('user', response.data.data.name);
+
+      setUser(response.data.data);
+      Success(`Welcome ${response.data.data.name}`);
       navigate('/home');
     } catch (error) {
       if (error.response) {
         Error(error.response.data.message);
+      } else {
+        Error('Erro Interno!');
       }
     }
   };

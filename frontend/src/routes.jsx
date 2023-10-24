@@ -4,6 +4,7 @@ import SignIn from './pages/signIn/SignIn';
 import SignOut from './pages/signOut/SignOut';
 import SignUp from './pages/SignUp/SignUp';
 import Home from './pages/home/Home';
+import Main from './pages/main/Main';
 import ForgotPassword from './pages/forgotPassword/ForgotPassword';
 import ResetPassword from './pages/resetPassword/ResetPassword';
 
@@ -21,6 +22,7 @@ const Rotas = () => {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />} />
+
         <Route path="/login" element={<SignIn />} />
         <Route path="/register" element={<SignUp />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
@@ -30,6 +32,14 @@ const Rotas = () => {
           element={
             <ProtectedRoutes>
               <SignOut />
+            </ProtectedRoutes>
+          }
+        />
+        <Route
+          path="/home"
+          element={
+            <ProtectedRoutes>
+              <Main />
             </ProtectedRoutes>
           }
         />

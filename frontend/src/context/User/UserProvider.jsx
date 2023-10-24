@@ -6,16 +6,10 @@ const UserProvider = ({ children }) => {
     () => localStorage.getItem('user') ?? null,
   );
 
-  React.useEffect(() => {
-    login();
-  }, [user]);
-
-  const login = () => {
-    // localStorage.setItem('user', user);
-  };
-
   const logout = () => {
     setUser(null);
+    localStorage.getItem('user');
+    localStorage.getItem('x-auth-token');
   };
 
   return (
