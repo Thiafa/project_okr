@@ -7,7 +7,7 @@ const Main = () => {
 
   return (
     <div>
-      <Sidebar name={user} />
+      <Sidebar name={user ?? user} />
     </div>
   );
 };

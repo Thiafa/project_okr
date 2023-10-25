@@ -19,24 +19,20 @@ use App\Http\Controllers\UserController;
 |
 */
 
-Route::middleware('cors')->group(function () {
+// Route::middleware('cors')->group(function () {
+Route::post('login', [AuthController::class, 'login']);
+Route::post('register', [AuthController::class, 'register']);
+Route::post('logout', [AuthController::class, 'logout']);
 
+Route::post('/forgot-password', [ForgotPasswordController::class, 'forgotPassword']);
+Route::post('/reset-password/{token}', [ResetPasswordController::class, 'reset']);
 
-
-    Route::post('login', [AuthController::class, 'login']);
-    Route::post('register', [AuthController::class, 'register']);
-    Route::post('logout', [AuthController::class, 'logout']);
-    // ? Route to received and confirm to email and send a link to email (post)
-    Route::post('/forgot-password', [ForgotPasswordController::class, 'forgotPassword']);
-    // ? Route to reset password (post)
-    Route::post('/reset-password/{token}', [ResetPasswordController::class, 'reset']);
-
-    Route::middleware('jwt.auth')->group(function () {
-        Route::get('/teste', function () {
-            return "Olá mundo";
-        });
-        Route::resource('user', UserController::class)->except('edit', 'create');
-        Route::patch('user/avatar/{user}', [UserController::class, 'uploadAvatar']);
-        Route::delete('user/avatar/{user}', [UserController::class, 'deleteAvatar']);
+Route::middleware('jwt.auth')->group(function () {
+    Route::get('/teste', function () {
+        return "Olá mundo";
     });
+    Route::resource('user', UserController::class)->except('edit', 'create');
+    Route::patch('user/avatar/{user}', [UserController::class, 'uploadAvatar']);
+    Route::delete('user/avatar/{user}', [UserController::class, 'deleteAvatar']);
 });
+// });
