@@ -12,6 +12,7 @@ use Laravel\Sanctum\HasApiTokens;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 use Illuminate\Contracts\Auth\CanResetPassword;
 use App\Notifications\ResetPasswordNotification;
+use App\Models\Okr;
 
 class User extends Authenticatable implements JWTSubject, CanResetPassword
 {
@@ -80,5 +81,10 @@ class User extends Authenticatable implements JWTSubject, CanResetPassword
         $client_url = 'http://localhost:5173/reset-password/';
         $url =  $client_url . $token;
         $this->notify(new ResetPasswordNotification($url));
+    }
+
+    public function okrs()
+    {
+        return $this->hasMany(Okr::class);
     }
 }

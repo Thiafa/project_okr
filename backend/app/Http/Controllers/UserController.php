@@ -16,17 +16,19 @@ class UserController extends Controller
 
     public function index(Request $request)
     {
-        $data = User::search($request)->paginate(10);
-        if ($data->isEmpty()) {
+        $users = User::search($request)->with('okrs')->paginate(10);
+        if ($users->isEmpty()) {
             return response()->fail("No users found.");
         }
-        return response()->success("Users retrieved successfully.", $data);
+        return response()->success("Users retrieved successfully.", $users);
     }
-    public function show(User $user)
+
+    public function show(string $id)
     {
-        $data = $user;
-        return response()->success("User retrieved successfully.", $data);
+        $user = User::with('okrs')->find($id);
+        return response()->success('Okrs', $user);
     }
+
     public function store(UserStoreRequest $request): mixed
     {
         $data = $request->validated();

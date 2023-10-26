@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Okr;
+use Illuminate\Contracts\Database\Query\Builder;
 
 class Project extends Model
 {
@@ -12,4 +14,12 @@ class Project extends Model
         'name',
         'description'
     ];
+    public function okrs()
+    {
+        return  $this->hasMany(Okr::class);
+    }
+    public function scopeSearch(Builder $query, $request)
+    {
+        return;
+    }
 }

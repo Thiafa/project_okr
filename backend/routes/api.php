@@ -7,6 +7,8 @@ use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\OkrController;
+use App\Http\Controllers\ProjectController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,5 +36,7 @@ Route::middleware('jwt.auth')->group(function () {
     Route::resource('user', UserController::class)->except('edit', 'create');
     Route::patch('user/avatar/{user}', [UserController::class, 'uploadAvatar']);
     Route::delete('user/avatar/{user}', [UserController::class, 'deleteAvatar']);
+    Route::resource('okr', OkrController::class)->except('edit', 'create');
+    Route::resource('project', ProjectController::class)->except('edit', 'create');
 });
 // });

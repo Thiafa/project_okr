@@ -5,15 +5,18 @@ namespace App\Http\Controllers;
 use App\Models\Project;
 use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
+use App\Models\User;
+use Illuminate\Http\Request;
 
 class ProjectController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $projects = Project::with('okrs')->get();
+        return response()->success('Okrs all', $projects);
     }
 
     /**
@@ -35,9 +38,10 @@ class ProjectController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Project $project)
+    public function show($id)
     {
-        //
+        $projects = Project::with('okrs')->find($id);
+        return response()->success('Okrs', $projects);
     }
 
     /**
