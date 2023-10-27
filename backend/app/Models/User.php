@@ -13,6 +13,7 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
 use Illuminate\Contracts\Auth\CanResetPassword;
 use App\Notifications\ResetPasswordNotification;
 use App\Models\Okr;
+use App\Models\Project;
 
 class User extends Authenticatable implements JWTSubject, CanResetPassword
 {
@@ -86,5 +87,10 @@ class User extends Authenticatable implements JWTSubject, CanResetPassword
     public function okrs()
     {
         return $this->hasMany(Okr::class);
+    }
+
+    public function projects()
+    {
+        return $this->belongsToMany(Project::class, 'project_user');
     }
 }

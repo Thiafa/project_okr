@@ -18,6 +18,13 @@ class Project extends Model
     {
         return  $this->hasMany(Okr::class);
     }
+
+    public function users()
+    {
+        return $this->belongsToMany(User::class, 'project_user');
+    }
+
+
     public function scopeSearch(Builder $query, $request)
     {
         return;

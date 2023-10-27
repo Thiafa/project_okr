@@ -15,9 +15,13 @@ class ProjectController extends Controller
      */
     public function index(Request $request)
     {
-        $projects = Project::with('okrs')->get();
-        return response()->success('Okrs all', $projects);
+        $id = Auth()->user()->id;
+        $projects = Project::whereHas('users', function ($query) use ($id) {
+            $query->where('users.id', $id);
+        })->get();
+        return response()->success('Projects all', $projects);
     }
+
 
     /**
      * Show the form for creating a new resource.
