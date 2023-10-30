@@ -53,4 +53,26 @@
   @apply border-b w-full h-1 bg-white;
 }
 
+.card{
+  @apply w-[500px] h-[300px] rounded-2xl shadow-2xl shadow-slate-300 m-auto
+}
+
+.titulo-okr{
+  @apply text-lg text-center font-medium text-okr-gray
+}
+
+.paragrafo-okr{
+  @apply text-sm text-left font-medium text-okr-gray px-14
+}
+
+/* SCROLL */
+::-webkit-scrollbar {
+  @apply w-2
+}
+::-webkit-scrollbar-track {
+  @apply bg-transparent
+}
+::-webkit-scrollbar-thumb {
+  @apply rounded-3xl bg-zinc-500 hover:bg-zinc-400
+}
 /* Medium */
