@@ -13,13 +13,12 @@ return new class extends Migration
     {
         Schema::create('okrs', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
             $table->string('objective');
             $table->string('taskone');
             $table->string('tasktwo');
-            $table->string('taskthree');
-            $table->string('taskfour');
-            $table->string('taskfive');
+            $table->string('taskthree')->nullable();
+            $table->string('taskfour')->nullable();
+            $table->string('taskfive')->nullable();
             $table->unsignedBigInteger('project_id');
             $table->unsignedBigInteger('user_id');
             $table->foreign('project_id')->references('id')->on('projects');

@@ -17,13 +17,12 @@ class OkrFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => fake()->name(),
             'objective' => fake()->text(),
             'taskone' => fake()->text(),
             'tasktwo' => fake()->text(),
-            'taskthree' => fake()->text(),
-            'taskfour' => fake()->text(),
-            'taskfive' => fake()->text(),
+            'taskthree' => null,
+            'taskfour' => null,
+            'taskfive' => null,
             'project_id' => 1,
             'user_id' => 1,
         ];

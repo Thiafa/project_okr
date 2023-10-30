@@ -10,7 +10,6 @@ class Okr extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name',
         'objective',
         'taskone',
         'tasktwo',
